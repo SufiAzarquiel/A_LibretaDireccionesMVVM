@@ -23,6 +23,116 @@ namespace A_LibretaDireccionesMVVM.ViewModel
             }
         }
 
+        private string nombre;
+        public string Nombre
+        {
+            get { return nombre; }
+            set
+            {
+                nombre = value;
+                OnPropertyChanged("Nombre");
+            }
+        }
+
+        private string apellidos;
+        public string Apellidos
+        {
+            get { return apellidos; }
+            set
+            {
+                apellidos = value;
+                OnPropertyChanged("Apellidos");
+            }
+        }
+
+        private string funcion;
+        public string Funcion
+        {
+            get { return funcion; }
+            set
+            {
+                funcion = value;
+                OnPropertyChanged("Funcion");
+            }
+        }
+
+        private string empresa;
+        public string Empresa
+        {
+            get { return empresa; }
+            set
+            {
+                empresa = value;
+                OnPropertyChanged("Empresa");
+            }
+        }
+
+        private string telefono;
+        public string Telefono
+        {
+            get { return telefono; }
+            set
+            {
+                telefono = value;
+                OnPropertyChanged("Telefono");
+            }
+        }
+
+        private string email;
+        public string Email
+        {
+            get { return email; }
+            set
+            {
+                email = value;
+                OnPropertyChanged("Email");
+            }
+        }
+
+        private string direccion1;
+        public string Direccion1
+        {
+            get { return direccion1; }
+            set
+            {
+                direccion1 = value;
+                OnPropertyChanged("Direccion1");
+            }
+        }
+
+        private string direccion2;
+        public string Direccion2
+        {
+            get { return direccion2; }
+            set
+            {
+                direccion2 = value;
+                OnPropertyChanged("Direccion2");
+            }
+        }
+
+        private string codigoPostal;
+        public string CodigoPostal
+        {
+            get { return codigoPostal; }
+            set
+            {
+                codigoPostal = value;
+                OnPropertyChanged("CodigoPostal");
+            }
+        }
+
+        private string ciudad;
+        public string Ciudad
+        {
+            get => ciudad;
+            set
+            {
+                ciudad = value;
+                OnPropertyChanged("Ciudad");
+            }
+        }
+
         private Contacto contactoSeleccionado;
         public Contacto ContactoSeleccionado
         {
@@ -201,117 +311,6 @@ namespace A_LibretaDireccionesMVVM.ViewModel
         private void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
-
-        private string nombre;
-        public string Nombre
-        {
-            get { return nombre; }
-            set
-            {
-                nombre = value;
-                OnPropertyChanged("Nombre");
-            }
-        }
-
-        private string apellidos;
-        public string Apellidos
-        {
-            get { return apellidos; }
-            set
-            {
-                apellidos = value;
-                OnPropertyChanged("Apellidos");
-            }
-        }
-
-        private string funcion;
-        public string Funcion
-        {
-            get { return funcion; }
-            set
-            {
-                funcion = value;
-                OnPropertyChanged("Funcion");
-            }
-        }
-
-        private string empresa;
-        public string Empresa
-        {
-            get { return empresa; }
-            set
-            {
-                empresa = value;
-                OnPropertyChanged("Empresa");
-            }
-        }
-
-        private string telefono;
-        public string Telefono
-        {
-            get { return telefono; }
-            set
-            {
-                telefono = value;
-                OnPropertyChanged("Telefono");
-            }
-        }
-
-        private string email;
-        public string Email
-        {
-            get { return email; }
-            set
-            {
-                email = value;
-                OnPropertyChanged("Email");
-            }
-        }
-
-        private string direccion1;
-        public string Direccion1
-        {
-            get { return direccion1; }
-            set
-            {
-                direccion1 = value;
-                OnPropertyChanged("Direccion1");
-            }
-        }
-
-        private string direccion2;
-        public string Direccion2
-        {
-            get { return direccion2; }
-            set
-            {
-                direccion2 = value;
-                OnPropertyChanged("Direccion2");
-            }
-        }
-
-        private string codigoPostal;
-        public string CodigoPostal
-        {
-            get { return codigoPostal; }
-            set
-            {
-                codigoPostal = value;
-                OnPropertyChanged("CodigoPostal");
-            }
-        }
-
-        private string ciudad;
-        public string Ciudad
-        {
-            get { return ciudad; }
-            set
-            {
-                ciudad = value;
-                OnPropertyChanged("Ciudad");
-            }
         }
     }
 }

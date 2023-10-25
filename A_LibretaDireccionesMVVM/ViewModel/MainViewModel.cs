@@ -1,6 +1,7 @@
 ﻿using A_LibretaDireccionesMVVM.Model;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Windows;
 using System.Windows.Input;
 
 namespace A_LibretaDireccionesMVVM.ViewModel
@@ -43,13 +44,18 @@ namespace A_LibretaDireccionesMVVM.ViewModel
                     Funcion = contactoSeleccionado.Funcion;
 
                     Empresa = contactoSeleccionado.Empresa;
-                    /* Empresa
-                     Telefono 
-                     Email 
-                     Direccion1 
-                     Direccion2 
-                     CodigoPostal
-                     Ciudad */
+
+                    Telefono = contactoSeleccionado.Telefono;
+
+                    Email = contactoSeleccionado.Email;
+
+                    Direccion1 = contactoSeleccionado.Direccion1;
+
+                    Direccion2 = contactoSeleccionado.Direccion2;
+
+                    CodigoPostal = contactoSeleccionado.CodigoPostal;
+
+                    Ciudad = contactoSeleccionado.Ciudad;
                 }
             }
         }
@@ -72,8 +78,6 @@ namespace A_LibretaDireccionesMVVM.ViewModel
 
         public MainViewModel()
         {
-
-
             gestorDeDatos = new GestorDeDatos();
 
             Contacto[] contactos = gestorDeDatos.LeerTodosLosRegistros();
@@ -98,78 +102,105 @@ namespace A_LibretaDireccionesMVVM.ViewModel
                 Nombre = "";
                 Apellidos = "";
                 Funcion = "";
-                /* Empresa
-                     Telefono 
-                     Email 
-                     Direccion1 
-                     Direccion2 
-                     CodigoPostal
-                     Ciudad */
-
+                Empresa = "";
+                Telefono = "";
+                Email = "";
+                Direccion1 = "";
+                Direccion2 = "";
+                CodigoPostal = "";
+                Ciudad = "";
             }
         }
 
+
+
         private void AccionNuevoContacto(object parametro)
         {
-
-            if (ContactoSeleccionado != null)
+            if (Nombre == "" ||
+                Apellidos == "" ||
+                Empresa == "" ||
+                Telefono == "")
             {
-                ContactoSeleccionado.Apellidos = Apellidos;
-
-                ContactoSeleccionado.Nombre = Nombre;
-
-                ContactoSeleccionado.Funcion = Funcion;
-
-                /* Empresa
-                     Telefono 
-                     Email 
-                     Direccion1 
-                     Direccion2 
-                     CodigoPostal
-                     Ciudad */
-
-                OnPropertyChanged("ContactoSeleccionado");
-
-                //Refrescamos el LisBox después de modificar el elemento modificado
-                gestorDeDatos.Guardar(ListaContactos);
-                Contacto[] contactos = gestorDeDatos.LeerTodosLosRegistros();
-                ListaContactos = new ObservableCollection<Contacto>(contactos);
-
+                // Show error window
+                ShowWarning("Nombre, Apellidos, Empresa y Teléfono son obligatorios");
             }
             else
             {
-                /* Empresa
-                     Telefono 
-                     Email 
-                     Direccion1 
-                     Direccion2 
-                     CodigoPostal
-                     Ciudad */
-                Contacto contacto = new Contacto { Apellidos = Apellidos, Nombre = Nombre, Funcion = Funcion };
-                ListaContactos.Add(contacto);
-            }
+                if (ContactoSeleccionado != null)
+                {
+                    ContactoSeleccionado.Apellidos = Apellidos;
 
+                    ContactoSeleccionado.Nombre = Nombre;
+
+                    ContactoSeleccionado.Funcion = Funcion;
+
+                    ContactoSeleccionado.Empresa = Empresa;
+
+                    ContactoSeleccionado.Telefono = Telefono;
+
+                    ContactoSeleccionado.Email = Email;
+
+                    ContactoSeleccionado.Direccion1 = Direccion1;
+
+                    ContactoSeleccionado.Direccion2 = Direccion2;
+
+                    ContactoSeleccionado.CodigoPostal = CodigoPostal;
+
+                    ContactoSeleccionado.Ciudad = Ciudad;
+
+                    OnPropertyChanged("ContactoSeleccionado");
+
+                    //Refrescamos el LisBox después de modificar el elemento modificado
+                    gestorDeDatos.Guardar(ListaContactos);
+                    Contacto[] contactos = gestorDeDatos.LeerTodosLosRegistros();
+                    ListaContactos = new ObservableCollection<Contacto>(contactos);
+
+                }
+                else
+                {
+                    Contacto contacto = new Contacto
+                    {
+                        Apellidos = Apellidos,
+                        Nombre = Nombre,
+                        Funcion = Funcion,
+                        Empresa = Empresa,
+                        Telefono = Telefono,
+                        Email = Email,
+                        Direccion1 = Direccion1,
+                        Direccion2 = Direccion2,
+                        CodigoPostal = CodigoPostal,
+                        Ciudad = Ciudad
+                    };
+                    ListaContactos.Add(contacto);
+                }
+                EmptyFields();
+            }
+        }
+
+        private void EmptyFields()
+        {
             Nombre = "";
             Apellidos = "";
             Funcion = "";
-            /* Empresa
-                     Telefono 
-                     Email 
-                     Direccion1 
-                     Direccion2 
-                     CodigoPostal
-                     Ciudad */
+            Empresa = "";
+            Telefono = "";
+            Email = "";
+            Direccion1 = "";
+            Direccion2 = "";
+            CodigoPostal = "";
+            Ciudad = "";
+        }
 
+        private static void ShowWarning(string message)
+        {
+            MessageBox.Show(message, "Input Error!", MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
         private void OnPropertyChanged(string propertyName)
         {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
 
@@ -181,8 +212,6 @@ namespace A_LibretaDireccionesMVVM.ViewModel
             {
                 nombre = value;
                 OnPropertyChanged("Nombre");
-
-
             }
         }
 
@@ -208,12 +237,81 @@ namespace A_LibretaDireccionesMVVM.ViewModel
             }
         }
 
-        /* Empresa
-                     Telefono 
-                     Email 
-                     Direccion1 
-                     Direccion2 
-                     CodigoPostal
-                     Ciudad */
+        private string empresa;
+        public string Empresa
+        {
+            get { return empresa; }
+            set
+            {
+                empresa = value;
+                OnPropertyChanged("Empresa");
+            }
+        }
+
+        private string telefono;
+        public string Telefono
+        {
+            get { return telefono; }
+            set
+            {
+                telefono = value;
+                OnPropertyChanged("Telefono");
+            }
+        }
+
+        private string email;
+        public string Email
+        {
+            get { return email; }
+            set
+            {
+                email = value;
+                OnPropertyChanged("Email");
+            }
+        }
+
+        private string direccion1;
+        public string Direccion1
+        {
+            get { return direccion1; }
+            set
+            {
+                direccion1 = value;
+                OnPropertyChanged("Direccion1");
+            }
+        }
+
+        private string direccion2;
+        public string Direccion2
+        {
+            get { return direccion2; }
+            set
+            {
+                direccion2 = value;
+                OnPropertyChanged("Direccion2");
+            }
+        }
+
+        private string codigoPostal;
+        public string CodigoPostal
+        {
+            get { return codigoPostal; }
+            set
+            {
+                codigoPostal = value;
+                OnPropertyChanged("CodigoPostal");
+            }
+        }
+
+        private string ciudad;
+        public string Ciudad
+        {
+            get { return ciudad; }
+            set
+            {
+                ciudad = value;
+                OnPropertyChanged("Ciudad");
+            }
+        }
     }
 }

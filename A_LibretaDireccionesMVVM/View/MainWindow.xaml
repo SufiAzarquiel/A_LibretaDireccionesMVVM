@@ -12,8 +12,8 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="150" />
-            <ColumnDefinition />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="4*"/>
         </Grid.ColumnDefinitions>
         <!-- Botones de acción (Agregar, Eliminar, Guardar
         Todo) -->
@@ -34,6 +34,8 @@
                         <TextBlock Text="{Binding Nombre}" FontSize="20" />
                         <TextBlock Text="{Binding Apellidos}" FontSize="20" />
                         <TextBlock Text="{Binding Empresa}" FontSize="14" />
+                        <TextBlock Text="{Binding Email}" FontSize="14" />
+                        <TextBlock Text="{Binding Telefono}" FontSize="14" />
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
@@ -81,19 +83,19 @@
             <Label Content="Función:" Grid.Row="3"/>
             <TextBox Grid.Column="1" Grid.Row="3" Text="{Binding Funcion, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
             <Label Content="Empresa:" Grid.Row="4"/>
-            <TextBox Grid.Column="1" Grid.Row="4" Text="{Binding Empresa, Mode=TwoWay}" />
+            <TextBox Grid.Column="1" Grid.Row="4" Text="{Binding Empresa, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
             <Label Content="Teléfono:" Grid.Row="5"/>
-            <TextBox Grid.Column="1" Grid.Row="5" Text="{Binding Telefono, Mode=TwoWay}" />
+            <TextBox Grid.Column="1" Grid.Row="5" Text="{Binding Telefono, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
             <Label Content="Email:" Grid.Row="6"/>
-            <TextBox Grid.Column="1" Grid.Row="6" Text="{Binding Email, Mode=TwoWay}" />
+            <TextBox Grid.Column="1" Grid.Row="6" Text="{Binding Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
             <Label Content="Dirección 1:" Grid.Row="7" />
-            <TextBox Grid.Column="1" Grid.Row="7" Text="{Binding Direccion1, Mode=TwoWay}" />
+            <TextBox Grid.Column="1" Grid.Row="7" Text="{Binding Direccion1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
             <Label Content="Dirección 2:" Grid.Row="8" />
-            <TextBox Grid.Column="1" Grid.Row="8" Text="{Binding Direccion2, Mode=TwoWay}" />
+            <TextBox Grid.Column="1" Grid.Row="8" Text="{Binding Direccion2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
             <Label Content="Código postal:" Grid.Row="9" />
-            <TextBox Grid.Column="1" Grid.Row="9" Text="{Binding CodigoPostal, Mode=TwoWay}" />
+            <TextBox Grid.Column="1" Grid.Row="9" Text="{Binding CodigoPostal, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
             <Label Content="Ciudad:" Grid.Row="10" />
-            <TextBox Grid.Column="1" Grid.Row="10" Text="{Binding Ciudad, Mode=TwoWay}" />
+            <TextBox Grid.Column="1" Grid.Row="10" Text="{Binding Ciudad, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
         </Grid>
 
